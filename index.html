@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Setlist Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script defer src="spotify_setlist_script.js"></script>
+    <style>
+        body {
+            overflow: auto;
+        }
+        .container {
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spotify Setlist Generator</h1>
+        <div class="input-group">
+            <label for="playlist-link">Spotify Playlist Link:</label>
+            <input type="text" id="playlist-link" placeholder="Enter Spotify Playlist Link" value="https://open.spotify.com/playlist/06RAuosjQhPqHcA1G83gNi?si=772d978980de427d">
+        </div>
+        <div class="input-group">
+            <label for="target-time">Target Time (in hours):</label>
+            <input type="number" id="target-time" step="0.5" min="0.5" placeholder="e.g. 1.5">
+        </div>
+        <button id="generate-button">Generate Setlist</button>
+        <button id="shuffle-button">Shuffle Setlist</button>
+        <div id="setlist-info" class="setlist-info"></div>
+        <div id="setlist" class="setlist">
+            <table id="setlist-table">
+                <thead>
+                    <tr>
+                        <th>Artist Image</th>
+                        <th>Song</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody id="setlist-body">
+                </tbody>
+            </table>
+        </div>
+        <div id="extra-setlist-container" class="extra-setlist"></div>
+        <button id="download-button">Download Setlist as PDF</button>
+    </div>
+    <script>
+        window.onload = function() {
+            let globalSongs = [];
+
+            document.getElementById('generate-button').addEventListener('click', async () => {
+                await generateSetlist();
+            });
+
+            document.getElementById('shuffle-button').addEventListener('click', () => {
+                if (globalSongs.length > 0) {
+                    shuffleSongs(globalSongs);
+                    createSetlist(globalSongs, parseFloat(document.getElementById('target-time').value));
+                } else {
+                    alert('Please generate the setlist first before shuffling.');
+                }
+            });
+
+            document.getElementById('download-button').addEventListener('click', downloadPDF);
+        };
+    </script>
+</body>
+</html>
