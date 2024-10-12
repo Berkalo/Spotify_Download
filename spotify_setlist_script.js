@@ -1,6 +1,6 @@
 // spotify_setlist_script.js
 
-const backendUrl = 'http://localhost:8888'; // Replace with your deployed backend URL if hosting online
+const backendUrl =  'https://best-ever-karaoke-setlist-maker.onrender.com'; // Replace with your deployed backend URL if hosting online
 
 window.onload = function() {
     let globalSongs = [];
