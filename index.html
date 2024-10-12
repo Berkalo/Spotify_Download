@@ -48,25 +48,5 @@
         <div id="extra-setlist-container" class="extra-setlist"></div>
         <button id="download-button">Download Setlist as PDF</button>
     </div>
-    <script>
-        window.onload = function() {
-            let globalSongs = [];
-
-            document.getElementById('generate-button').addEventListener('click', async () => {
-                await generateSetlist();
-            });
-
-            document.getElementById('shuffle-button').addEventListener('click', () => {
-                if (globalSongs.length > 0) {
-                    shuffleSongs(globalSongs);
-                    createSetlist(globalSongs, parseFloat(document.getElementById('target-time').value));
-                } else {
-                    alert('Please generate the setlist first before shuffling.');
-                }
-            });
-
-            document.getElementById('download-button').addEventListener('click', downloadPDF);
-        };
-    </script>
 </body>
 </html>

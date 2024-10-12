@@ -1,3 +1,5 @@
+// Authorization token that must have been created previously. See : https://developer.spotify.com/documentation/web-api/concepts/authorization
+const token = 'BQAkVh3KjYh6ESym3sMLPRtx74qRv43u3DZiBp--KUjfmKM3JCMJoeWPpiSUrrERWo8a0x_KJC3tvBDNmGmjBB2wv17VI-yMPuS8QCs1O8BV_oynOUbpe1638eSorPxxnPutol7KaER9wUtY_N7MP8AQp67ItoI8enD-HQGW3-0LE2BT1MMx4fE42PQA_u0ah_jAd0CBy9Ikj87g55Umwfg4ap3HM3JIi-rme3ih5ofZimmBXk9wfeVSbLjPQr5j4iSMuTkqWoRs8A'
 window.onload = function() {
     let globalSongs = [];
 
@@ -24,7 +26,7 @@ window.onload = function() {
             while (nextUrl) {
                 const response = await fetch(nextUrl, {
                     headers: {
-                        'Authorization': 'Bearer BQBS_LHouZWzHycKEowaHMSjtnn6N9oTjxu11mQFX-2Ngl8qAxSGkySIVpLjET7194MhtuonYHJ5WJ0l_k4mSxiejRwpEbNb_FYjJKlyIDlV54GL8crsG_Mjy6CqhD7yvFp4IuxfENeg0Tehj5DUa81_hlzBLSegZA7NCn6CuyoyaeHytEuouTqOmaT7nErQQiD-N83Smx8Mg2Dw6Orr2MSnqW66FF4ZLOAq8key9M0TsXGLwVemzQsTZQXgpxWEjJReSKVx4ksp4Q' // Replace with a valid token
+                        'Authorization': `Bearer ${token}`
                     }
                 });
 
